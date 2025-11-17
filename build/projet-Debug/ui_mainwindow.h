@@ -69,30 +69,23 @@ public:
         frame = new QFrame(centralwidget);
         frame->setObjectName("frame");
         frame->setGeometry(QRect(190, 20, 371, 681));
-        frame->setStyleSheet(QString::fromUtf8("QFrame {\n"
-"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,\n"
-"        stop:0 rgba(0, 20, 40, 0.8), stop:1 rgba(0, 0, 0, 0.8));\n"
-"    border: 2px solid rgba(0, 255, 255, 0.4);\n"
-"    border-radius: 12px;\n"
-"    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);\n"
-"}\n"
-""));
+        frame->setStyleSheet(QString::fromUtf8(""));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
         frame->setFrameShadow(QFrame::Shadow::Raised);
         label = new QLabel(frame);
         label->setObjectName("label");
         label->setGeometry(QRect(20, 10, 181, 31));
+        label->setStyleSheet(QString::fromUtf8(""));
         Affichage = new QTextEdit(frame);
         Affichage->setObjectName("Affichage");
         Affichage->setGeometry(QRect(20, 60, 331, 51));
         Affichage->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
-"    background: transparent;\n"
+"    background: rgb(2, 2, 2);\n"
 "    border: none;\n"
-"    color: #00f6ff;\n"
+"    color: white;\n"
 "    font-size: 32px;\n"
 "    padding: 14px;\n"
-"    qproperty-frame: false;\n"
-"    selection-background-color: #00baff;\n"
+"    /*selection-background-color: #00baff;*/\n"
 "}"));
         Affichage->setReadOnly(true);
         layoutWidget = new QWidget(frame);

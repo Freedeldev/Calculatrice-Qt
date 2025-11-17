@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=12 -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=12 -Wall -Wextra $(DEFINES)
-INCPATH       = -I../../../Calculatrice -I. -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtWidgets.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtGui.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/mkspecs/macx-clang -F/Users/macbookpro/Qt/6.9.3/macos/lib
+INCPATH       = -I../../../Calculatrice -I. -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtWidgets.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtGui.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtQml.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/include -I/Users/macbookpro/Qt/6.9.3/macos/include/QtQmlIntegration -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtNetwork.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/mkspecs/macx-clang -F/Users/macbookpro/Qt/6.9.3/macos/lib
 QMAKE         = /Users/macbookpro/Qt/6.9.3/macos/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = Calculatrice1.0.0
 DISTDIR = /Users/macbookpro/Downloads/Projet/Calculatrice/build/projet-Debug/.tmp/Calculatrice1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=12 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/macbookpro/Qt/6.9.3/macos/lib
-LIBS          = $(SUBLIBS) -F/Users/macbookpro/Qt/6.9.3/macos/lib -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtCore -framework IOKit -framework DiskArbitration -framework UniformTypeIdentifiers -framework OpenGL   
+LIBS          = $(SUBLIBS) -F/Users/macbookpro/Qt/6.9.3/macos/lib -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtQml -framework QtNetwork -framework QtCore -framework IOKit -framework DiskArbitration -framework UniformTypeIdentifiers -framework OpenGL   
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -586,6 +586,8 @@ Makefile: ../../Calculatrice.pro /Users/macbookpro/Qt/6.9.3/macos/mkspecs/macx-c
 		../../Calculatrice.pro \
 		/Users/macbookpro/Qt/6.9.3/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl \
 		/Users/macbookpro/Qt/6.9.3/macos/lib/QtGui.framework/Resources/QtGui.prl \
+		/Users/macbookpro/Qt/6.9.3/macos/lib/QtQml.framework/Resources/QtQml.prl \
+		/Users/macbookpro/Qt/6.9.3/macos/lib/QtNetwork.framework/Resources/QtNetwork.prl \
 		/Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Resources/QtCore.prl
 	$(QMAKE) -o Makefile ../../Calculatrice.pro -spec macx-clang CONFIG+=debug CONFIG+=qml_debug
 /Users/macbookpro/Qt/6.9.3/macos/mkspecs/features/spec_pre.prf:
@@ -839,6 +841,8 @@ Makefile: ../../Calculatrice.pro /Users/macbookpro/Qt/6.9.3/macos/mkspecs/macx-c
 ../../Calculatrice.pro:
 /Users/macbookpro/Qt/6.9.3/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl:
 /Users/macbookpro/Qt/6.9.3/macos/lib/QtGui.framework/Resources/QtGui.prl:
+/Users/macbookpro/Qt/6.9.3/macos/lib/QtQml.framework/Resources/QtQml.prl:
+/Users/macbookpro/Qt/6.9.3/macos/lib/QtNetwork.framework/Resources/QtNetwork.prl:
 /Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Resources/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../../Calculatrice.pro -spec macx-clang CONFIG+=debug CONFIG+=qml_debug
@@ -902,7 +906,7 @@ moc_mainwindow.cpp: ../../mainwindow.h \
 		/Users/macbookpro/Qt/6.9.3/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/macbookpro/Qt/6.9.3/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/macbookpro/Qt/6.9.3/macos/libexec/moc
-	/Users/macbookpro/Qt/6.9.3/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/macbookpro/Qt/6.9.3/macos/mkspecs/macx-clang -I/Users/macbookpro/Downloads/Projet/Calculatrice -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtWidgets.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtGui.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/macbookpro/Qt/6.9.3/macos/lib ../../mainwindow.h -o moc_mainwindow.cpp
+	/Users/macbookpro/Qt/6.9.3/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/macbookpro/Qt/6.9.3/macos/mkspecs/macx-clang -I/Users/macbookpro/Downloads/Projet/Calculatrice -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtWidgets.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtGui.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtQml.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/include -I/Users/macbookpro/Qt/6.9.3/macos/include/QtQmlIntegration -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtNetwork.framework/Headers -I/Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/macbookpro/Qt/6.9.3/macos/lib ../../mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -945,7 +949,11 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		ui_mainwindow.h \
 		../../global.h \
 		/Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Headers/QString \
-		/Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Headers/qstring.h
+		/Users/macbookpro/Qt/6.9.3/macos/lib/QtCore.framework/Headers/qstring.h \
+		/Users/macbookpro/Qt/6.9.3/macos/lib/QtQml.framework/Headers/QJSEngine \
+		/Users/macbookpro/Qt/6.9.3/macos/lib/QtQml.framework/Headers/qjsengine.h \
+		/Users/macbookpro/Qt/6.9.3/macos/lib/QtQml.framework/Headers/QJSValue \
+		/Users/macbookpro/Qt/6.9.3/macos/lib/QtQml.framework/Headers/qjsvalue.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

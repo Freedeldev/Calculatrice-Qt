@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "global.h"
+#include <QJSEngine>
+#include <QJSValue>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,151 +22,83 @@ MainWindow::~MainWindow()
 }
 
 
-
-void MainWindow::on_Btn1_clicked()
-{
-
-
+void Afficher(QString nombreAfficher){
 
     if (Affiche=="0"){
-        Affiche = "1";
-        ui->Affichage->setText(Affiche);
+        Affiche =nombreAfficher;
     }
     else{
-        Affiche += "1";
-        ui->Affichage->setPlainText(Affiche);
-
+        Affiche += nombreAfficher;
     }
-
+}
+void MainWindow::on_Btn1_clicked()
+{
+    Afficher("1");
+    ui->Affichage->setPlainText(Affiche);
 
 }
 
 
 void MainWindow::on_Btn2_clicked()
 {
-    //QString Affiche = ui->Affichage->toPlainText();
-
-    if (Affiche=="0"){
-        Affiche = "2";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-        Affiche += "2";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("2");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
 void MainWindow::on_Btn3_clicked()
 {
-    if (Affiche=="0"){
-        Affiche = "3";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-        Affiche += "3";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("3");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
 void MainWindow::on_Btn4_clicked()
 {
-    if (Affiche=="0"){
-        Affiche = "4";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-        Affiche += "4";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("4");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
 void MainWindow::on_Btn5_clicked()
 {
-    if (Affiche=="0"){
-        Affiche = "5";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-        Affiche += "5";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("5");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
 void MainWindow::on_Btn6_clicked()
 {
-    if (Affiche=="0"){
-        Affiche = "6";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-       Affiche += "6";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("6");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
 void MainWindow::on_Btn7_clicked()
 {
-    if (Affiche=="0"){
-        Affiche = "7";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-        Affiche += "7";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("7");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
 void MainWindow::on_Btn8_clicked()
 {
-    if (Affiche=="0"){
-        Affiche = "8";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-        Affiche += "8";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("8");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
 void MainWindow::on_Btn9_clicked()
 {
-    if (Affiche=="0"){
-        Affiche = "9";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-        Affiche += "9";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("9");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
 void MainWindow::on_Btn0_clicked()
 {
-    if (Affiche=="0"){
-        Affiche = "0";
-        ui->Affichage->setText(Affiche);
-    }
-    else{
-        Affiche += "0";
-        ui->Affichage->setPlainText(Affiche);
-
-    }
+    Afficher("0");
+    ui->Affichage->setPlainText(Affiche);
 }
 
 
@@ -219,21 +154,61 @@ void MainWindow::on_BtnPlusouMoin_clicked()
 
 void MainWindow::on_BtnSom_clicked()
 {
-    double valeur=Affiche.toDouble();
-    Affiche="0";
-    somme+=valeur;
+    Affiche += "+";
     ui->Affichage->setPlainText(Affiche);
-    VerifyComa=false;
+    VerifyComa = false;
+}
 
+
+
+
+
+
+void MainWindow::on_BtnSous_clicked()
+{
+    Affiche += "-";
+    ui->Affichage->setPlainText(Affiche);
+    VerifyComa = false;
+}
+
+
+void MainWindow::on_BtnMult_clicked()
+{
+    Affiche += "*";
+    ui->Affichage->setPlainText(Affiche);
+    VerifyComa = false;
+}
+
+
+void MainWindow::on_BtnDivi_clicked()
+{
+    Affiche += "/";
+    ui->Affichage->setPlainText(Affiche);
+    VerifyComa = false;
 }
 
 
 void MainWindow::on_BtnResultat_clicked()
 {
-    somme+=Affiche.toDouble();
-    Affiche=QString::number(somme,'g',10);
-    ui->Affichage->setPlainText(Affiche);
-    somme=0;
+    QJSEngine moteur;
 
+    // On évalue l'expression
+    QJSValue resultatJS = moteur.evaluate(Affiche);
+
+    // Vérifier si une erreur est survenue
+    if (resultatJS.isError()) {
+        ui->Affichage->setPlainText("Erreur");
+        return;
+    }
+
+    // Convertir en double
+    double resultat = resultatJS.toNumber();
+
+    // Afficher
+    Affiche = QString::number(resultat, 'g', 15);
+    ui->Affichage->setPlainText(Affiche);
+
+    // Si tu veux nettoyer VerifyComa
+    VerifyComa = false;
 }
 

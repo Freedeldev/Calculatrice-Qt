@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    double Operation();
 
 
 
@@ -51,6 +52,12 @@ private slots:
     void on_BtnSom_clicked();
 
     void on_BtnResultat_clicked();
+
+    void on_BtnSous_clicked();
+
+    void on_BtnMult_clicked();
+
+    void on_BtnDivi_clicked();
 
 private:
     Ui::MainWindow *ui;

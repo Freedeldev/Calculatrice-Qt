@@ -31,14 +31,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QFrame {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-        stop:0 rgba(0, 20, 40, 0.8), stop:1 rgba(0, 0, 0, 0.8));
-    border: 2px solid rgba(0, 255, 255, 0.4);
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-}
-</string>
+     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::Shape::StyledPanel</enum>
@@ -55,6 +48,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="text">
       <string>Calculatrice Standard</string>
      </property>
@@ -70,13 +66,12 @@
      </property>
      <property name="styleSheet">
       <string notr="true">QLineEdit {
-    background: transparent;
+    background: rgb(2, 2, 2);
     border: none;
-    color: #00f6ff;
+    color: white;
     font-size: 32px;
     padding: 14px;
-    qproperty-frame: false;
-    selection-background-color: #00baff;
+    /*selection-background-color: #00baff;*/
 }</string>
      </property>
      <property name="readOnly">
